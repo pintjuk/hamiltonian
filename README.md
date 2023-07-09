@@ -7,7 +7,12 @@ API that provides a list of the closest pickup spots to the customer
 
 
 
-## How to run
+## Demo
+demo server is running on ...
+to try it out run
+`curl`
+
+## How to run localy
 
 ### With go
 0) [install go](https://go.dev/doc/install)
