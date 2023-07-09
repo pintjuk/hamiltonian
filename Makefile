@@ -26,6 +26,13 @@ cover: cover.out
 	go tool cover -html=cover.out -o cover.html
 	open cover.html
 
+.PHONY: setup
+setup:
+	go install honnef.co/go/tools/cmd/staticcheck@latest
+
+.PHONY: check
+check:
+
 .PHONY: help
 help:
 	@printf "run\t\t\t start server\n"
