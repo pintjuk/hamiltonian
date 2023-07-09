@@ -24,13 +24,13 @@ func newConfig() config {
 		structuredLogs: false,
 	}
 
-	if "" != port {
+	if port != "" {
 		c.port = port
 	}
 
-	if "1" == structuredLogs {
-		c.structuredLogs = true
-	}
+	//if "1" == structuredLogs {
+	//	c.structuredLogs = true
+	//}
 
 	return c
 }
