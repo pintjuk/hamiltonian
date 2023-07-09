@@ -25,3 +25,6 @@ jobs:
 
       - name: Run Tests
         run: go test --cover github.com/pintjuk/routemaster/src/route
+
+      - name: Autotag
+        uses: phish108/autotag-action@v1.1.64
