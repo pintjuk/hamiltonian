@@ -11,7 +11,6 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -26,8 +25,46 @@ jobs:
       - name: Run Tests
         run: go test --cover github.com/pintjuk/routemaster/src/route
 
+      - name: Run static check
+        uses: dominikh/staticcheck-action@v1.3.0
+        with:
+          version: "2023.1.3"
+          install-go: false
+          cache-key: ${{ matrix.go }}
+
+  vet:
+    name: Run vet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.20.5
+
+      - name: Go Mod Tidy
+        run: go mod tidy
+
       - name: Run vet
         run: "go vet ./..."
+
+
+  check:
+    name: Run vet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.20.5
+
+      - name: Go Mod Tidy
+        run: go mod tidy
 
       - name: Run static check
         uses: dominikh/staticcheck-action@v1.3.0
@@ -36,7 +73,7 @@ jobs:
           install-go: false
           cache-key: ${{ matrix.go }}
   tag:
-    needs: test
+    needs: [test, vet, check]
     runs-on: ubuntu-latest
     strategy:
       matrix:
