@@ -23,7 +23,7 @@ jobs:
         run: go mod tidy
 
       - name: Run Tests
-        run: go test --cover github.com/pintjuk/routemaster/src/route
+        run: go test --cover ./src/...
 
   vet:
     name: Run vet
