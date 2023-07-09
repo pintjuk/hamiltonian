@@ -7,10 +7,14 @@ type config struct {
 	structuredLogs bool
 }
 
-// get all the configuratinos for this project
+func (c config) Port() string {
+	return c.port
+}
+
+// get all the configurations for this project
 //
 // NOTE: there are probably good libs in golang to handle this,
-// but it's not nessesary yet given the scope of the project
+// but it's not necessary yet given the scope of the project
 func newConfig() config {
 
 	port := os.Getenv("PORT")

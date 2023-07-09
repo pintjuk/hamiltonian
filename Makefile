@@ -13,3 +13,23 @@ run:
 .PHONY:clean
 clean:
 	rm -rf dist
+
+cover.out:
+	go test -coverprofile cover.out github.com/pintjuk/routemaster/src/route
+.PHONY:test
+test:
+	rm cover.out
+	${MAKE} cover.out
+
+.PHONY: cover
+cover: cover.out
+	go tool cover -html=cover.out -o cover.html
+	open cover.html
+
+.PHONY: help
+help:
+	@printf "run\t\t\t start server\n"
+	@printf "test\t\t\t run tests\n"
+	@printf "cover\t\t\t opens coverage report\n"
+	@printf "docker-build\t\t build docker container\n"
+	@printf "docker-run\t\t run server in docker\n"
