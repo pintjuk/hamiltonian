@@ -1,15 +1,10 @@
-# TODO:
-1) [ ] debug
-2) [ ] make sure the unit test makes sense
-3) [ ] docker file
-4) [ ] terraform
-5) [ ] finish readme
-6) [ ] review code again to make sure it is readable
 
-
-# Routmaster
+# Routemaster
 
 API that provides a list of the closest pickup spots to the customer
+
+![](https://t3.ftcdn.net/jpg/00/82/84/72/360_F_82847279_fW7TCAujmT5B1G3HwSK7uPzrb0dgXGo2.jpg)
+
 
 
 ## How to run
@@ -22,3 +17,12 @@ API that provides a list of the closest pickup spots to the customer
 4) `make run`
 5) `curl `
 ## how to run tests
+
+
+# TODO:
+1) [ ] debug
+2) [ ] make sure the unit test makes sense
+3) [ ] docker file
+4) [ ] terraform
+5) [ ] finish readme
+6) [ ] review code again to make sure it is readable
