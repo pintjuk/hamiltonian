@@ -16,7 +16,7 @@ import (
 func oSRMGetDistance(src route.Cord, dist route.Cord) (duration float64, distance float64, err error) {
 	osrmRoute, err := osrm.GetRoute(
 		fmt.Sprintf("%f,%f", src.Long, src.Lat),
-		fmt.Sprintf("%f,%f", src.Long, src.Lat),
+		fmt.Sprintf("%f,%f", dist.Long, dist.Lat),
 	)
 	if err != nil {
 		log.Printf("Error: %s", err)
