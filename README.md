@@ -19,6 +19,6 @@ API that provides a list of the closest pickup spots to the customer
 1) [install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 2) `git clone git@github.com:pintjuk/routemaster.git`
 3) `cd routemaster`
-4) `go run src/main.go`
+4) `make run`
 5) `curl `
 ## how to run tests
