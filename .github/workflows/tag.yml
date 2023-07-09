@@ -1,18 +1,19 @@
-name: tag
-on:
-  - pull_request_target
-
-jobs:
-  tag:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    strategy:
-      matrix:
-        node-version:
-          - 12
-    steps:
-      - uses: phish108/autotag-action@v1.1.55
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN}}
+# TODO: fix this auto tagging action has access issues to github api, token it uses has no write access
+#name: tag
+#on:
+#  - pull_request_target
+#
+#jobs:
+#  tag:
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#      pull-requests: write
+#    strategy:
+#      matrix:
+#        node-version:
+#          - 12
+#    steps:
+#      - uses: phish108/autotag-action@v1.1.55
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN}}
