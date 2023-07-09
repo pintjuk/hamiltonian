@@ -22,7 +22,7 @@ to try it out run
 4) `make run`
 5) `curl `
 ## how to run tests
-
+make sure you run steps 0-3 above then `make test` to generate coverage report run `make cover`
 
 # TODO:
 1) [ ] debug
