@@ -45,7 +45,7 @@ jobs:
 
 
   check:
-    name: Run vet
+    name: Run staticcheck
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
