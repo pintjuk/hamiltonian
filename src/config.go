@@ -18,7 +18,7 @@ func (c config) Port() string {
 func newConfig() config {
 
 	port := os.Getenv("PORT")
-	structuredLogs := os.Getenv("STRUCTURED_LOGS")
+	//structuredLogs := os.Getenv("STRUCTURED_LOGS")
 	c := config{
 		port:           "8080",
 		structuredLogs: false,
