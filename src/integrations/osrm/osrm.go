@@ -16,10 +16,11 @@ func (err IntegrationError) Error() string {
 	return fmt.Sprintf("OSRM integration: %s", err.err.Error())
 }
 
-// GetRoute function sends a GET request to the OSRM routing API and returns the fetched route
-// information.
+// GetRoute fetches driving route  between to coordinates from OSRM
 func GetRoute(from string, to string) (*APIResponse, error) {
-
+	// TODO: Implement rate limiting to prevent us from spamming osrm with requests.
+	// TODO: refactor, osrm host hos should be a config value,
+	// since we most likely will want to switch to our own instance in production
 	uri := fmt.Sprintf("http://router.project-osrm.org/route/v1/driving/%s;%s?overview=false", from, to)
 	res, err := http.Get(uri)
 	if err != nil {

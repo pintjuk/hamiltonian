@@ -18,7 +18,7 @@ cover.out:
 	go test -coverprofile cover.out github.com/pintjuk/routemaster/src/route
 .PHONY:test
 test:
-	rm cover.out
+	rm cover.out || true
 	${MAKE} cover.out
 
 .PHONY: cover

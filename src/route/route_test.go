@@ -8,7 +8,7 @@ import (
 type expectedResult struct {
 	Duration    float64
 	Distance    float64
-	Destination Cord
+	Destination Coord
 }
 
 type testDistanceReturnValue struct {
@@ -17,10 +17,10 @@ type testDistanceReturnValue struct {
 	ShouldError bool
 }
 
-type testDistancesState map[Cord]testDistanceReturnValue
+type testDistancesState map[Coord]testDistanceReturnValue
 
 // fake for calculateDistances
-func (state testDistancesState) calculateDistance(src Cord, dest Cord) (duration float64, distance float64, err error) {
+func (state testDistancesState) calculateDistance(src Coord, dest Coord) (duration float64, distance float64, err error) {
 
 	if state[dest].ShouldError {
 		return 0, 0, errors.New("unable to calculate distance")
@@ -31,8 +31,8 @@ func (state testDistancesState) calculateDistance(src Cord, dest Cord) (duration
 func TestGetClosestRouteWithDurationAndDistance(t *testing.T) {
 	t.Run("should return sorted routes based on order given by distance function", func(t *testing.T) {
 		// Arrange
-		source := Cord{Long: 1.1, Lat: 2.2}
-		destinations := []Cord{
+		source := Coord{Long: 1.1, Lat: 2.2}
+		destinations := []Coord{
 			{Long: 3.3, Lat: 4.4},
 			{Long: 5.5, Lat: 6.6},
 			{Long: 8.5, Lat: 0.6},
@@ -67,8 +67,8 @@ func TestGetClosestRouteWithDurationAndDistance(t *testing.T) {
 
 	t.Run("should skip any routes that cause distance to error", func(t *testing.T) {
 		// Arrange
-		source := Cord{Long: 1.1, Lat: 2.2}
-		destinations := []Cord{
+		source := Coord{Long: 1.1, Lat: 2.2}
+		destinations := []Coord{
 			{Long: 3.3, Lat: 4.4},
 			{Long: 5.5, Lat: 6.6},
 			{Long: 8.5, Lat: 0.6},
@@ -105,8 +105,8 @@ func TestGetClosestRouteWithDurationAndDistanceAsinc(t *testing.T) {
 
 	t.Run("should return sorted routes based on order given by distance function", func(t *testing.T) {
 		// Arrange
-		source := Cord{Long: 1.1, Lat: 2.2}
-		destinations := []Cord{
+		source := Coord{Long: 1.1, Lat: 2.2}
+		destinations := []Coord{
 			{Long: 3.3, Lat: 4.4},
 			{Long: 5.5, Lat: 6.6},
 			{Long: 8.5, Lat: 0.6},
@@ -141,8 +141,8 @@ func TestGetClosestRouteWithDurationAndDistanceAsinc(t *testing.T) {
 
 	t.Run("should skip any routes that cause distance to error", func(t *testing.T) {
 		// Arrange
-		source := Cord{Long: 1.1, Lat: 2.2}
-		destinations := []Cord{
+		source := Coord{Long: 1.1, Lat: 2.2}
+		destinations := []Coord{
 			{Long: 3.3, Lat: 4.4},
 			{Long: 5.5, Lat: 6.6},
 			{Long: 8.5, Lat: 0.6},

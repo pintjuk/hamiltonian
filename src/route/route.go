@@ -8,13 +8,13 @@ import (
 	"sync"
 )
 
-type Cord struct {
+type Coord struct {
 	Long float64
 	Lat  float64
 }
 
 type Route struct {
-	Destination Cord
+	Destination Coord
 	Duration    float64
 	Distance    float64
 }
@@ -42,9 +42,9 @@ func (a ByTimeAndDistance) Swap(i, j int) {
 //
 // *getDistance*: a caller supplied function that calculates the distance and duration to travel from src to destination
 func GetClosestRouteWithDurationAndDistance(
-	source Cord,
-	destinations []Cord,
-	getDistance func(src Cord, dist Cord) (duration float64, distance float64, err error)) []Route {
+	source Coord,
+	destinations []Coord,
+	getDistance func(src Coord, dist Coord) (duration float64, distance float64, err error)) []Route {
 
 	var routs []Route
 	for _, destination := range destinations {
@@ -75,9 +75,9 @@ func GetClosestRouteWithDurationAndDistance(
 // Runs calls to getDistance asynchronously
 // NOTE: there is no benefit when running against the OSRM demo server, since it is heavily rate limited. :(
 func GetClosestRouteWithDurationAndDistanceAsync(
-	source Cord,
-	destinations []Cord,
-	getDistance func(src Cord, dist Cord) (duration float64, distance float64, err error)) []Route {
+	source Coord,
+	destinations []Coord,
+	getDistance func(src Coord, dist Coord) (duration float64, distance float64, err error)) []Route {
 
 	var routes []Route
 
@@ -87,7 +87,7 @@ func GetClosestRouteWithDurationAndDistanceAsync(
 	for _, destination := range destinations {
 		wg.Add(1)
 
-		go func(destination Cord) {
+		go func(destination Coord) {
 			duration, distance, err := getDistance(source, destination)
 			defer wg.Done()
 

@@ -13,7 +13,7 @@ func (c config) Port() string {
 
 // get all the configurations for this project
 //
-// NOTE: there are probably good libs in golang to handle this,
+// NOTE: there are probably good libs to handle this,
 // but it's not necessary yet given the scope of the project
 func newConfig() config {
 

@@ -13,7 +13,7 @@ import (
 )
 
 // oSRMGetDistance implements the getDistances function in domain model using the OSRM client
-func oSRMGetDistance(src route.Cord, dist route.Cord) (duration float64, distance float64, err error) {
+func oSRMGetDistance(src route.Coord, dist route.Coord) (duration float64, distance float64, err error) {
 	osrmRoute, err := osrm.GetRoute(
 		fmt.Sprintf("%f,%f", src.Long, src.Lat),
 		fmt.Sprintf("%f,%f", dist.Long, dist.Lat),
@@ -31,14 +31,14 @@ func getRoutes(c echo.Context) error {
 	// Validate src param
 	src := c.QueryParam("src")
 
-	// I know we technically do not need to parse cords to implement the specification,
+	// I know we technically do not need to parse coords to implement the specification,
 	// but doing it allows us to catch formatting errors and provide better feedback to the caller
-	srcCordDTO, err := api.MakeLongLatFromString(src)
+	srcCordDTO, err := api.MakeCoordFromString(src)
 	if src == "" {
 		return c.String(http.StatusBadRequest, "Missing src parameters")
 	}
 
-	srcCord := route.Cord{
+	srcCord := route.Coord{
 		Long: srcCordDTO.Long,
 		Lat:  srcCordDTO.Lat,
 	}
@@ -53,17 +53,17 @@ func getRoutes(c echo.Context) error {
 		return c.String(http.StatusBadRequest, fmt.Sprintf("parameter src had invalid format: %s", err))
 	}
 
-	var destCords []route.Cord
+	var destCords []route.Coord
 
 	for _, dst := range dstParams {
-		destCordDTO, err := api.MakeLongLatFromString(strings.TrimSpace(dst))
+		destCordDTO, err := api.MakeCoordFromString(strings.TrimSpace(dst))
 
 		if err != nil {
 			log.Printf("Error: %s", err)
 			return c.String(http.StatusBadRequest, fmt.Sprintf("Parameter dst had invalid format: %s", err))
 		}
 
-		destCords = append(destCords, route.Cord{
+		destCords = append(destCords, route.Coord{
 			Long: destCordDTO.Long,
 			Lat:  destCordDTO.Lat,
 		})
@@ -82,7 +82,7 @@ func getRoutes(c echo.Context) error {
 
 	for _, r := range routs {
 		routeDTOs = append(routeDTOs, api.Route{
-			Destination: api.Cord{
+			Destination: api.Coord{
 				Long: r.Destination.Long,
 				Lat:  r.Destination.Lat,
 			},
