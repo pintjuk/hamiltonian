@@ -20,7 +20,8 @@ https://routemaster-gfpakxausa-lz.a.run.app/routes?src=12.388860,52.517037&dst=1
 - OSRM client is in [src/integrations/osrm/osrm.go](src/integrations/osrm/osrm.go)
 - [api/api.go](api/api.go) contains DTOs for routemaster
 - [infra/main.tf] contains infra as code
-- [src/route/route.go](src/route/route.go) containes two functions TestGetClosestRouteWithDurationAndDistance and TestGetClosestRouteWithDurationAndDistanceAsinc, that implement teh core logic of the application the only difference is that one is synchronous and te other is not. both are tested in [src/route/route_test.go](src/route/route_test.go). curently teh synchronous one is used since its simpler and there was no big advantage with the asynchronous when running against the demo osrm server
+- [src/route/route.go](src/route/route.go) containes two functions TestGetClosestRouteWithDurationAndDistance and TestGetClosestRouteWithDurationAndDistanceAsinc, that implement the core logic of the application the only difference is that one is synchronous and the onther one maskes asynchronous requests to OSRM. both are tested in [src/route/route_test.go](src/route/route_test.go). currently the synchronous one is used since its simpler and there was no big advantage with the other one when running against the demo osrm server
+  
 ## How to run locally
 
 ### With go
