@@ -30,14 +30,16 @@ func getRoutes(c echo.Context) error {
 
 	// Validate src param
 	src := c.QueryParam("src")
-
-	// I know we technically do not need to parse coords to implement the specification,
-	// but doing it allows us to catch formatting errors and provide better feedback to the caller
-	srcCordDTO, err := api.MakeCoordFromString(src)
 	if src == "" {
 		return c.String(http.StatusBadRequest, "Missing src parameters")
 	}
 
+	// I know we technically do not need to parse coords to implement the specification,
+	// but doing it allows us to catch formatting errors and provide better feedback to the caller
+	srcCordDTO, err := api.MakeCoordFromString(src)
+	if err != nil {
+		return c.String(http.StatusBadRequest, fmt.Sprintf("parameter src had invalid format: %s", err))
+	}
 	srcCord := route.Coord{
 		Long: srcCordDTO.Long,
 		Lat:  srcCordDTO.Lat,
@@ -49,10 +51,7 @@ func getRoutes(c echo.Context) error {
 	if !ok {
 		return c.String(http.StatusBadRequest, "Missing dst parameters")
 	}
-	if err != nil {
-		return c.String(http.StatusBadRequest, fmt.Sprintf("parameter src had invalid format: %s", err))
-	}
-
+	
 	var destCords []route.Coord
 
 	for _, dst := range dstParams {
