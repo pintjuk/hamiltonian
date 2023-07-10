@@ -46,3 +46,10 @@ if you released version v0.0.2 and now wish to deploy it:
 3) run `terraform apply -var service_version=v0.0.2`
 4) make sure that you understand the changes that will be performed by terraform
 5) run `terraform apply -var service_version=v0.0.2`
+
+# Project structure
+
+- /routes endpoint is implemented in [src/http_resources/routes.go](src/http_resources/routes.go)
+- osrm client is in [src/integrations/osrm/osrm.go](src/integrations/osrm/osrm.go)
+- /api containes DTOs for routemaster
+- /src/route containes 

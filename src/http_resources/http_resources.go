@@ -20,10 +20,11 @@ type Config interface {
 	Port() string
 }
 
+// I wanted to implement a structured logger for GCloud but did not get around to it
 type Logger interface {
-	Debugf(msg string)
-	Infof(msg string)
-	Error(err error)
+	Debugf(msg string, trace string)
+	Infof(msg string, trace string)
+	Error(err error, trace string)
 }
 
 func StartHttpServer(config Config, logger Logger) {
