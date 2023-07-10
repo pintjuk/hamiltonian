@@ -14,7 +14,7 @@ Demo server is running on: https://routemaster-gfpakxausa-lz.a.run.app
 try it out with
 https://routemaster-gfpakxausa-lz.a.run.app/routes?src=12.388860,52.517037&dst=11.397634,52.529407&dst=13.428555,52.523219
 
-# Project structure
+## Project structure
 
 - /routes endpoint is implemented in [src/http_resources/routes.go](src/http_resources/routes.go)
 - OSRM client is in [src/integrations/osrm/osrm.go](src/integrations/osrm/osrm.go)
